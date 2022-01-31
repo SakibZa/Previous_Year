@@ -1,0 +1,23 @@
+body
+{
+    background-image: url('Reg.jpg');
+    background-size: 1364px 634px;
+}
+form
+{
+        width: 420px;
+    height: 50px;
+    position: relative;
+    left: 459px;
+    top: 81px;
+}
+#submit
+{
+        margin-left: 47px;
+    margin-top: 9px;
+}
+#Login
+{
+        margin-left: 127px;
+    margin-top:9px;
+}
