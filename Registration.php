@@ -1,6 +1,7 @@
 <?php
 
    include('Connect.php');
+   session_start();
 
 ?>
 
@@ -43,6 +44,7 @@
         {
             
             $email=Validdata($_POST["Email"]);
+            $_SESSION['Email']=$email;
         }
         if(!$_POST["Number"])
         {
@@ -65,8 +67,24 @@
         {
             
             $pw=Validdata($_POST["pwd"]);
+            $_SESSION["psd"]=$pw;
         }
+         
+        if($name && $email && $num && $pw)
+        {
             
+        $query="INSERT INTO `user` (`Name`, `Email`, `password`, `Mobile`) VALUES ('$name', '$email', '$pw', '$num')";
+            
+            if(mysqli_query($conn,$query))
+            {
+                header("location:login.php");
+                
+            }
+            else
+            {
+                header("location:Eror.html");
+            }
+        }
         
     }
 
@@ -119,17 +137,27 @@
     <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
    </div>
         
-  <button type="submit" class="btn btn-primary" id="submit" name="submit">Submit</button>
+  <button type="submit" class="btn btn-primary" id="submit" name="submit">Register</button>
 
-<button type="submit" class="btn btn-primary" id="Login" name="Login">Login</button>
+   <button type="submit" class="btn btn-primary" id="Login" name="Login">Login</button>
 </form>
 
     
-       
+   
         
     
     <script src="bootstrap/js/bootstrap.min.js">  </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+      <?php
+        
+        if(isset($_POST['Login']))
+        {
+            
+            header("location:login.php");
+        }
+        
+      ?>
+        
     </body>
     
     

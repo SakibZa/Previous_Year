@@ -1,0 +1,39 @@
+body
+{
+        background-image: url(image/login.jpg);
+    background-size: 1415px 658px;
+}
+
+form
+{
+    
+        margin-top: 71px;
+    margin-left: 42px;
+    margin-right: 81px;
+}
+
+#container
+{
+        border: 2px solid wheat;
+    width: 424px;
+    height: 420px;
+    position: relative;
+    left: 449px;
+    top: 91px;
+    background-color: whitesmoke;
+    opacity: 0.9;
+}
+#container form button
+{
+        position: relative;
+    left: 132px;
+    top: 23px;
+    
+}
+#a
+{
+        position: relative;
+    top: 66px;
+    left: 38px;
+}
+}
