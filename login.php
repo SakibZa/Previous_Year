@@ -1,6 +1,6 @@
 <?php 
-
   session_start();
+  include('Connect.php');
 ?>
 
 <html>
@@ -13,81 +13,85 @@
        <link href="bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
       
       <link href="login.css" type="text/css" rel="stylesheet">
+      
+    <?php
+      
+         $email_er="";
+         $pw_er="";
+         $email="";
+         if(isset($_POST["Login"]))
+         {
+             
+             function validdata($formdata)
+             {
+                 $formdata=trim(stripslashes(htmlspecialchars($formdata)));
+                 return $formdata;
+             }
+             
+             if(!$_POST["email"])
+             {
+                 $email_er="This Filed is required";
+             }
+             else
+             {
+                 $email=validdata($_POST['email']);
+             }
+             if(!$_POST["pwd"])
+             {
+                 $pw_er="This field is required";
+                 
+             }
+             else
+             {
+                 $pw=validdata($_POST['pwd']);
+             }
+             
+               
+             $query="SELECT Email,password FROM `user` WHERE Email='$email' ";
+             
+               $result=mysqli_query($conn,$query);
+             
+             if(mysqli_num_rows($result)>0)
+             {
+                 
+                 while($row=mysqli_fetch_assoc($result))
+                 {
+                     
+                     $em=$row['Email'];
+                     $pd=$row['password'];
+                 }
+                 
+                 
+                 if($pd==$pw)
+                 {
+                     header("location:Home.html");
+                 }
+                 else
+                 {
+                     header("location:Eror.html");
+                 }
+             }
+             
+         }
+      
+      ?>
     
   </head>
     
-    <?php
-        
-         $Email="";
-         $Email_er="";
-         $pw="";
-         $pw_er="";
     
-        function validdata($formdata)
-        {
-            
-            $formdata=trim(stripslashes(htmlspecialchars($formdata)));
-            return $formdata;
-        }
-    
-       if(isset($_POST["Login"]))
-       {
-           if(!$_POST["email"])
-           {
-               $Email_er="This field is Required";
-               
-           }
-           else
-           {
-               
-               $Email=validdata($_POST["email"]);
-           }
-           if(!$_POST["pwd"])
-           {
-               $pw_er="This field is Required";
-               
-           }
-           else
-           {
-               
-               $pw=validdata($_POST["pwd"]);
-           }
-           if($pw && $Email)
-           {
-               if(($_SESSION['Email']==$Email)&&($_SESSION["psd"]==$pw))
-               {
-                   
-                   header("location:Home.html");
-               }
-               else
-               {
-                   header("location:Eror.html");
-               }
-                   
-               
-           }
-           
-       }
-    
-    
-    
-    
-    
-    
-    ?>
     
   <body>
       <div id="container">
       <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
      <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email</label>
-         <small class="text-danger">*<?php echo $Email_er;?></small>
+     <small class="text-danger">*<?php echo $email_er;?></small>
     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
     </div>
     
     <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Password</label>
-        <small class="text-danger">*<?php echo $pw_er;?></small>
+   <small class="text-danger">*<?php echo $pw_er;?></small>
     <input type="password" class="form-control" id="exampleInputPassword1" name="pwd">
     </div>
     
