@@ -57,12 +57,12 @@
                  while($row=mysqli_fetch_assoc($result))
                  {
                      
-                     $em=$row['Email'];
-                     $pd=$row['password'];
+                     $_SESSION['em']=$row['Email'];
+                     $_SESSION['pd']=$row['password'];
                  }
                  
                  
-                 if($pd==$pw)
+                 if($_SESSION['pd']==$pw)
                  {
                      header("location:Home.html");
                  }

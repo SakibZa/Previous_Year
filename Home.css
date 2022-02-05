@@ -1,0 +1,25 @@
+a
+{
+        text-decoration: none;
+    color: white;
+    
+    position: relative;
+    left: 14px;
+    top: 5px;
+    font-size: 18px;
+    
+    font-weight: bold;
+}
+#btn
+{
+        border: solid 1px antiquewhite;
+    width: 96px;
+    height: 42px;
+    background-color: blue;
+    border-radius: 10px;
+}
+#btn:active{
+    
+    position: relative;
+    top:1px;
+}
